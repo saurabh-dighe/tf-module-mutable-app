@@ -13,8 +13,8 @@ resource "aws_spot_instance_request" "spot-app" {
   }
 }
 resource "aws_ec2_tag" "spot-app" {
-  # ... other instance configuration options
-  resource_id  = aws_spot_instance_request.app.spot_instance_id
+
+  resource_id  = aws_spot_instance_request.spot-app.spot_instance_id
   key         = "Name"
   value       = "roboshop-${var.ENV}-${var.COMPONENT}-SPOT"
 }
