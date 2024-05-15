@@ -6,3 +6,18 @@ data "terraform_remote_state" "vpc" {
     region = "us-east-1"
   }
 }
+
+data "aws_ami" "ansible_ami" {
+  most_recent      = true
+  name_regex       = "Ansible-AMI"
+  owners           = ["058264375008"]
+}
+
+data "aws_secretsmanager_secret" "roboshop_secrets" {
+  name      = "roboshop/secrets"            
+}
+
+#Extracting the sectrets
+data "aws_secretsmanager_secret_version" "secret_version" {
+  secret_id = data.aws_secretsmanager_secret.roboshop_secrets.id
+}
