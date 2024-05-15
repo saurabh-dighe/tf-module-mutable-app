@@ -14,7 +14,7 @@ resource "aws_spot_instance_request" "spot-app" {
 }
 resource "aws_ec2_tag" "spot-app" {
 
-  resource_id  = aws_spot_instance_request.spot-app.spot_instance_id
+  resource_id = aws_spot_instance_request.spot-app[count.index].spot_instance_id
   key         = "Name"
   value       = "roboshop-${var.ENV}-${var.COMPONENT}-SPOT"
 }
