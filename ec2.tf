@@ -24,7 +24,7 @@ resource "aws_ec2_tag" "spot-app" {
   count                       = local.INSTANCE_COUNT
   resource_id                 = element(local.INSTANCE_IDS, count.index)
   key                         = "Name"
-  value                       = "roboshop-${var.ENV}-${var.COMPONENT}-${count.index}"
+  value                       = "roboshop-${var.ENV}-${var.COMPONENT}-${count.index+1}"
 }
 
 
