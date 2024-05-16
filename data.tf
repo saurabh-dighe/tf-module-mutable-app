@@ -6,6 +6,14 @@ data "terraform_remote_state" "vpc" {
     region = "us-east-1"
   }
 }
+data "terraform_remote_state" "alb" {
+  backend = "s3"
+  config = {
+    bucket = "saurabh-bucket-tf"
+    key    = "dev/tf-vpc/teraform.tfstate"
+    region = "us-east-1"
+  }
+}
 
 data "aws_ami" "ansible_ami" {
   most_recent      = true

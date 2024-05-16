@@ -10,7 +10,7 @@ resource "null_resource" "remote_provisioner" {
 
   provisioner "remote-exec" {
     inline = [
-      "ansible-pull -U https://github.com/saurabh-dighe/Ansible.git -e ENV=dev -e COMPONENT=${var.COMPONENT} roboshop-pull.yml"
+      "ansible-pull -U https://github.com/saurabh-dighe/Ansible.git -e ENV=dev -e COMPONENT=${var.COMPONENT} -e APP_VERSION=${var.APP_VERSION} roboshop-pull.yml"
     ]
   }
 }
