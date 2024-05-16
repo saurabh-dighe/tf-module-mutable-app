@@ -5,7 +5,7 @@ resource "null_resource" "remote_provisioner" {
     type     = "ssh"
     user     = local.SSH_USERNAME
     password = local.SSH_PASSWORD
-    host     = element(local.INSTANCE_IDS, count.index)
+    host     = element(local.INSTANCE_IPS, count.index)
   }
 
   provisioner "remote-exec" {
