@@ -1,10 +1,11 @@
 resource "null_resource" "remote_provisioner" {
   # Establishes connection to be used by all
+  count = local.INSTANCE_COUNT
   connection {
     type     = "ssh"
     user     = local.SSH_USERNAME
     password = local.SSH_PASSWORD
-    host     = aws_spot_instance_request.rabbitmq.private_ip
+    host     = element(local.INSTANCE_IDS, count.index)
   }
 
   provisioner "remote-exec" {
