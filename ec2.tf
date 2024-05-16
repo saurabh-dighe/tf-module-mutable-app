@@ -20,7 +20,7 @@ resource "aws_instance" "OD-app"{
   iam_instance_profile        = "EC2-admin"
 }
 
-resource "aws_ec2_tag" "spot-app" {
+resource "aws_ec2_tag" "instance-tag" {
   count                       = local.INSTANCE_COUNT
   resource_id                 = element(local.INSTANCE_IDS, count.index)
   key                         = "Name"
