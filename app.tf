@@ -1,6 +1,6 @@
 resource "null_resource" "remote_provisioner" {
   # Establishes connection to be used by all
-#   triggers = {always_run = timestamp() }
+  triggers = {always_run = timestamp() }
 
   count = local.INSTANCE_COUNT
   connection {
