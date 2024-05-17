@@ -10,7 +10,7 @@ data "terraform_remote_state" "alb" {
   backend = "s3"
   config = {
     bucket = "saurabh-bucket-tf"
-    key    = "dev/tf-vpc/teraform.tfstate"
+    key    = "dev/tf-alb/teraform.tfstate"
     region = "us-east-1"
   }
 }
