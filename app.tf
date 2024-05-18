@@ -1,6 +1,6 @@
 resource "null_resource" "remote_provisioner" {
   # Establishes connection to be used by all
-  # triggers = {always_run = timestamp() }
+  triggers = {always_run = timestamp() }
 
   count = local.INSTANCE_COUNT
   connection {
@@ -12,7 +12,7 @@ resource "null_resource" "remote_provisioner" {
 
   provisioner "remote-exec" {
     inline = [
-      "ansible-pull -U https://github.com/saurabh-dighe/Ansible.git -e ENV=dev -e COMPONENT=${var.COMPONENT} -e DOCDB_ENDPOINT=${data.terraform_remote_state.db.outputs.DOCDB_ENDPOINT} -e APP_VERSION=${var.APP_VERSION} roboshop-pull.yml"
+      "ansible-pull -U https://github.com/saurabh-dighe/Ansible.git -e ENV=dev -e COMPONENT=${var.COMPONENT} -e DOCDB_ENDPOINT=${data.terraform_remote_state.db.outputs.DOCDB_ENDPOINT} -e REDIS_ENDPOINT=${data.terraform_remote_state.db.outputs.REDIS_ENDPOINT} -e APP_VERSION=${var.APP_VERSION} roboshop-pull.yml"
     ]
   }
 }
