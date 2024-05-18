@@ -14,7 +14,14 @@ data "terraform_remote_state" "alb" {
     region = "us-east-1"
   }
 }
-
+data "terraform_remote_state" "db" {
+  backend = "s3"
+  config = {
+    bucket = "saurabh-bucket-tf"
+    key    = "dev/tf-databases/teraform.tfstate"
+    region = "us-east-1"
+  }
+}
 data "aws_ami" "ansible_ami" {
   most_recent      = true
   name_regex       = "Ansible-AMI"
