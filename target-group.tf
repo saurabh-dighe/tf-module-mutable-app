@@ -3,6 +3,18 @@ resource "aws_lb_target_group" "app" {
   port     = var.APP_PORT
   protocol = "HTTP"
   vpc_id   = data.terraform_remote_state.vpc.outputs.VPC_ID
+
+  health_check {
+    enabled             = true             # Enable health checks (default)
+    interval            = 10              # Check every 30 seconds
+    path                = "/health"              # Path to check (e.g., root for web servers)
+    port                = var.APP_PORT    # Use the same port as the target group
+    protocol            = "HTTP"           # Match the target group's protocol
+    healthy_threshold   = 3                # 3 successful checks mark target healthy
+    unhealthy_threshold = 2                # 2 failed checks mark target unhealthy
+    timeout             = 5                # 5 seconds timeout for each check
+    matcher             = "200"            # Successful response codes (HTTP status 200)
+  }
 }
 
 resource "aws_lb_target_group_attachment" "app" {
