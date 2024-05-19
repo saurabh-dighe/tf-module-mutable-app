@@ -18,6 +18,9 @@ resource "aws_instance" "OD-app"{
   vpc_security_group_ids      = var.INTERNAL? element([aws_security_group.allow_private.*.id], count.index) : element([aws_security_group.allow_public.*.id], count.index)
   associate_public_ip_address = var.INTERNAL? false : true
   iam_instance_profile        = "EC2-admin"
+  tags = {
+    Name = "roboshop-${var.ENV}-${var.COMPONENT}-${count.index+1}"
+  }
 }
 
 resource "aws_ec2_tag" "instance-tag" {
