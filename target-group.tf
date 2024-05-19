@@ -6,9 +6,8 @@ resource "aws_lb_target_group" "app" {
 
   health_check {
     enabled             = true             # Enable health checks (default)
-    interval            = 10              # Check every 30 seconds
-    path                = "/health"              # Path to check (e.g., root for web servers)
-    port                = var.APP_PORT    # Use the same port as the target group
+    interval            = 10               # Check every 30 seconds
+    path                = "/health"        # Path to check (e.g., root for web servers)   
     protocol            = "HTTP"           # Match the target group's protocol
     healthy_threshold   = 3                # 3 successful checks mark target healthy
     unhealthy_threshold = 2                # 2 failed checks mark target unhealthy
