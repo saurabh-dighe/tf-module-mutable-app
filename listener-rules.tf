@@ -28,15 +28,35 @@ resource "aws_lb_listener_rule" "pub_app_rule" {
   count        = var.INTERNAL  ? 0 : 1 
   listener_arn = data.terraform_remote_state.alb.outputs.PUBLIC_LISTENER_ARN[0]
   priority     = random_integer.priority.result
-
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.app.arn
   }
 
   condition {
-    host_header {
-      values = ["${var.COMPONENT}-${var.ENV}.${data.terraform_remote_state.vpc.outputs.PUBLIC_HOSTEDZONE_NAME}"]
+    path_pattern {
+      values = ["*"] 
     }
   }
+  
+  # action {
+  #   type             = "forward"
+  #   target_group_arn = aws_lb_target_group.app.arn
+  # }
+
+  # condition {
+  #   host_header {
+  #     values = ["${var.COMPONENT}-${var.ENV}.${data.terraform_remote_state.vpc.outputs.PUBLIC_HOSTEDZONE_NAME}"]
+  #   }
+  # }
+  
 }
+
+# default_action {
+#     type = "fixed-response"
+#     fixed_response {
+#       content_type = "text/plain"
+#       message_body = "Fixed response content"
+#       status_code  = "200"
+#     }
+#   }
