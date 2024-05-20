@@ -49,12 +49,3 @@ resource "aws_lb_listener_rule" "pub_app_rule" {
   # }
   
 }
-
-# default_action {
-#     type = "fixed-response"
-#     fixed_response {
-#       content_type = "text/plain"
-#       message_body = "Fixed response content"
-#       status_code  = "200"
-#     }
-#   }
