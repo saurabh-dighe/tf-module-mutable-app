@@ -3,8 +3,6 @@ resource "random_integer" "priority" {
   min = 100
   max = 500
 }
-
-
 #  private Listener Rule
 resource "aws_lb_listener_rule" "prv_app_rule" {
   count        = var.INTERNAL  ? 1 : 0 
@@ -38,7 +36,7 @@ resource "aws_lb_listener_rule" "pub_app_rule" {
       values = ["*"] 
     }
   }
-  
+
   # action {
   #   type             = "forward"
   #   target_group_arn = aws_lb_target_group.app.arn
