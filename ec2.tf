@@ -19,13 +19,9 @@ resource "aws_instance" "OD-app"{
   associate_public_ip_address = var.INTERNAL? false : true
   iam_instance_profile        = "EC2-admin"
 }
-
 resource "aws_ec2_tag" "instance-tag" {
   count                       = local.INSTANCE_COUNT
   resource_id                 = element(local.INSTANCE_IDS, count.index)
   key                         = "Name"
   value                       = "roboshop-${var.ENV}-${var.COMPONENT}-${count.index+1}"
 }
-
-
-
