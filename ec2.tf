@@ -8,7 +8,7 @@ resource "aws_spot_instance_request" "spot-app" {
   vpc_security_group_ids      = var.INTERNAL? element([aws_security_group.allow_private.*.id], count.index) : element([aws_security_group.allow_public.*.id], count.index)
   # associate_public_ip_address = var.INTERNAL? false : true
   wait_for_fulfillment        = true
-  iam_instance_profile        = "EC2-admin"
+  iam_instance_profile        = "EC2-Admin"
 }
 
 resource "aws_instance" "OD-app"{
@@ -19,7 +19,7 @@ resource "aws_instance" "OD-app"{
   subnet_id                   = var.INTERNAL? element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_ID, count.index) : element(data.terraform_remote_state.vpc.outputs.PUBLIC_SUBNET_ID, count.index)
   vpc_security_group_ids      = var.INTERNAL? element([aws_security_group.allow_private.*.id], count.index) : element([aws_security_group.allow_public.*.id], count.index)
   # associate_public_ip_address = var.INTERNAL? false : true
-  iam_instance_profile        = "EC2-AAdmin"
+  iam_instance_profile        = "EC2-Admin"
 }
 resource "aws_ec2_tag" "instance-tag" {
   count                       = local.INSTANCE_COUNT
