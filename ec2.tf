@@ -28,3 +28,10 @@ resource "aws_ec2_tag" "instance-tag" {
   key                         = "Name"
   value                       = "roboshop-${var.ENV}-${var.COMPONENT}-${count.index+1}"
 }
+resource "aws_ec2_tag" "instance-tag-1" {
+  count                       = local.INSTANCE_COUNT
+  
+  resource_id                 = element(local.INSTANCE_IDS, count.index)
+  key                         = "monitor"
+  value                       = "yes"
+}

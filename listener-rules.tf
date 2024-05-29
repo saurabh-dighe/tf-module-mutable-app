@@ -51,6 +51,5 @@ resource "aws_lb_listener_rule" "pub_app_rule" {
   #   host_header {
   #     values = ["${var.COMPONENT}-${var.ENV}.${data.terraform_remote_state.vpc.outputs.PUBLIC_HOSTEDZONE_NAME}"]
   #   }
-  # }
-  
+  # } 
 }
