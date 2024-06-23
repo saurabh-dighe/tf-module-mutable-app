@@ -1,7 +1,7 @@
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "saurabh-bucket-tf1"
+    bucket = "saurabh-bucket-tf"
     key    = "dev/tf-vpc/teraform.tfstate"
     region = "us-east-1"
   }
@@ -9,7 +9,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "alb" {
   backend = "s3"
   config = {
-    bucket = "saurabh-bucket-tf1"
+    bucket = "saurabh-bucket-tf"
     key    = "dev/tf-alb/teraform.tfstate"
     region = "us-east-1"
   }
@@ -17,7 +17,7 @@ data "terraform_remote_state" "alb" {
 data "terraform_remote_state" "db" {
   backend = "s3"
   config = {
-    bucket = "saurabh-bucket-tf1"
+    bucket = "saurabh-bucket-tf"
     key    = "dev/tf-databases/teraform.tfstate"
     region = "us-east-1"
   }
