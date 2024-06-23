@@ -29,7 +29,7 @@ data "aws_ami" "ansible_ami" {
 }
 
 data "aws_secretsmanager_secret" "roboshop_secrets" {
-  name      = "roboshop/secrets"            
+  name      = "roboshop_secrets"            
 }
 
 #Extracting the sectrets
